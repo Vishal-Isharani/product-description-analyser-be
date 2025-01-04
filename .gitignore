@@ -1,0 +1,7 @@
+.env
+.DS_Store
+.streamlit
+.venv
+__pycache__
+.temp
+.python-version
