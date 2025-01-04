@@ -23,9 +23,8 @@ app.add_middleware(
 )
 
 
-class AnalyzeRequest(BaseModel):
-    image: str
-    prompt: str
+class AnalyzeURLRequest(BaseModel):
+    url: str
 
 
 class AnalyzeResponse(BaseModel):
@@ -59,6 +58,13 @@ async def analyze(file: UploadFile):
     temp_path = await save_to_temp_file(file)
     response = analyze_image(temp_path)
     os.unlink(temp_path)
+    return response
+
+
+@app.post("/analyze-url")
+async def analyze_url(request: AnalyzeURLRequest):
+    print(request.url)
+    response = analyze_image(request.url)
     return response
 
 
