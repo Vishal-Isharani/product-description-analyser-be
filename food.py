@@ -2,7 +2,7 @@ from tempfile import NamedTemporaryFile
 from phi.agent import Agent
 from phi.tools.duckduckgo import DuckDuckGo
 from phi.model.openai import OpenAIChat
-from constants import SYSTEM_PROMPT, INSTRUCTIONS
+from constants import FOOD_NUTRITION_SYSTEM_PROMPT, FOOD_NUTRITION_INSTRUCTIONS
 from fastapi import FastAPI, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
@@ -33,14 +33,15 @@ class AnalyzeResponse(BaseModel):
     Considerations: list[str]
     NutritionInformation: list[str]
     Conclusion: str
+    ProductName: str
 
 
 def get_agent():
     return Agent(
         model=OpenAIChat(id="gpt-4o"),
-        name="Food Product Analyzer",
-        system_prompt=SYSTEM_PROMPT,
-        instructions=INSTRUCTIONS,
+        name="Food Nutrition Analyzer",
+        system_prompt=FOOD_NUTRITION_SYSTEM_PROMPT,
+        instructions=FOOD_NUTRITION_INSTRUCTIONS,
         tools=[DuckDuckGo()],
         structured_outputs=True,
         response_model=AnalyzeResponse,
