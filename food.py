@@ -11,15 +11,20 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+env = os.getenv("ENV", "dev")
+
 app = FastAPI(
     title="Food Nutrition Analyzer",
     description="Analyze the nutrition of a food product",
     version="1.0.0",
 )
 
-origins = [
-    "http://localhost:5173",
-]
+origins = []
+
+if env == "dev":
+    origins.append("http://localhost:5173")
+else:
+    origins.append("http://ingredientsui.qodist.in")
 
 app.add_middleware(
     CORSMiddleware,
