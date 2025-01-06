@@ -8,7 +8,11 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import os
 
-app = FastAPI()
+app = FastAPI(
+    title="Food Nutrition Analyzer",
+    description="Analyze the nutrition of a food product",
+    version="1.0.0",
+)
 
 origins = [
     "http://localhost:5173",
