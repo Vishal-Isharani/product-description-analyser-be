@@ -25,6 +25,8 @@ if env == "dev":
     origins.append("http://localhost:5173")
 else:
     origins.append("https://ingredientsui.qodist.in")
+    origins.append("https://localhost")
+    origins.append("capacitor://localhost")
 
 app.add_middleware(
     CORSMiddleware,
