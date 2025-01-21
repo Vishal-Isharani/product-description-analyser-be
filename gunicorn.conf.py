@@ -14,4 +14,9 @@ errorlog = "./logs/error.log"
 capture_output = True
 enable_stdio_inheritance = True
 
+# Increase the maximum size of HTTP request headers and fields
+limit_request_line = 8190  # Default value is sufficient
+limit_request_fields = 100  # Default is sufficient
+limit_request_field_size = 20480  # 20 MB (in kilobytes, adjust if needed)
+
 raw_env = ["ENV=prod"]

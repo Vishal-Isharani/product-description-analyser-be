@@ -6,3 +6,4 @@ __pycache__
 .temp
 .python-version
 logs/
+vector_stores/

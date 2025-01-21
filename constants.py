@@ -10,6 +10,7 @@ INSTRUCTIONS = """
 * Remember the user may not be educated about the product, break it down in simple words like explaining to 10 year kid
 * Identify artificial additives and preservatives
 * Check against major dietary restrictions (vegan, halal, kosher). Include this in response. 
+* Return the product name
 * Rate nutritional value on scale of 1-5
 * Highlight key health implications or concerns
 * Suggest healthier alternatives if needed
