@@ -1,10 +1,8 @@
 from tempfile import NamedTemporaryFile
 from dotenv import load_dotenv
 from phi.agent import Agent
-from phi.knowledge.text import TextKnowledgeBase
 from phi.tools.duckduckgo import DuckDuckGo
 from phi.model.openai import OpenAIChat
-from phi.embedder.openai import OpenAIEmbedder
 from constants import SYSTEM_PROMPT, INSTRUCTIONS
 from fastapi import FastAPI, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
@@ -14,7 +12,6 @@ from langchain_openai import OpenAIEmbeddings, ChatOpenAI
 from langchain_community.vectorstores import FAISS
 from langchain.retrievers.document_compressors import EmbeddingsFilter
 from langchain_core.prompts import ChatPromptTemplate
-from langchain.retrievers import ContextualCompressionRetriever
 from langchain.chains.combine_documents import create_stuff_documents_chain
 from langchain.chains import create_retrieval_chain
 from langchain_core.chat_history import BaseChatMessageHistory
