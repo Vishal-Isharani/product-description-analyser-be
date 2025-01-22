@@ -28,13 +28,22 @@ import os
 
 load_dotenv()
 
-app = FastAPI()
+env = os.getenv("ENV", "dev")
 
-db_url = os.getenv("MONGODB_URI")
+app = FastAPI(
+    title="Product Ingredients Analyzer",
+    description="Analyze the ingredients of a product",
+    version="1.0.0",
+)
 
-origins = [
-    "http://localhost:5173",
-]
+origins = []
+
+if env == "dev":
+    origins.append("http://localhost:5173")
+else:
+    origins.append("https://ingredientsui.qodist.in")
+    origins.append("https://localhost")
+    origins.append("capacitor://localhost")
 
 app.add_middleware(
     CORSMiddleware,
