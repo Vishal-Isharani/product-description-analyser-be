@@ -97,7 +97,6 @@ def read_root():
 
 @app.post("/analyze")
 async def analyze(file: UploadFile, request_id: str):
-    print("request_id", request_id)
     temp_path = await save_to_temp_file(file)
     response = analyze_image(temp_path, request_id)
     os.unlink(temp_path)
@@ -123,8 +122,7 @@ async def chat(request: ChatRequest):
     contextualize_q_system_prompt = """Given a chat history and the latest user question \
     which might reference context in the chat history, formulate a standalone question \
     which can be understood without the chat history. Do NOT answer the question, \
-    just reformulate it if needed and otherwise return it as is.\
-    Always return the answer in markdown format."""
+    just reformulate it if needed and otherwise return it as is."""
     contextualize_q_prompt = ChatPromptTemplate.from_messages(
         [
             ("system", contextualize_q_system_prompt),
@@ -141,6 +139,7 @@ async def chat(request: ChatRequest):
     Use the following pieces of retrieved context to answer the question. \
     If you don't know the answer, just say that you don't know. \
     Use three sentences maximum and keep the answer concise.\
+    Always return the answer in markdown format.\
 
     {context}"""
     qa_prompt = ChatPromptTemplate.from_messages(
